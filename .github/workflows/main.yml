@@ -12,18 +12,7 @@ jobs:
       - name: Trigger Supabase Function
         run: |
           curl -X POST "https://daomjbawryhkobgbhgeh.functions.supabase.co/weekly_sms" \
-          -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" \
-          -H "Content-Type: application/json" \
-          -d '{
-            "twilio_sid": "'"$TWILIO_SID"'",
-            "twilio_auth_token": "'"$TWILIO_AUTH_TOKEN"'",
-            "twilio_phone_number": "'"$TWILIO_PHONE_NUMBER"'",
-            "user_phone_number": "'"$USER_PHONE_NUMBER"'"
-          }'
+          -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+          -H "Content-Type: application/json"
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          TWILIO_SID: ${{ secrets.TWILIO_SID }}
-          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-          TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
-          USER_PHONE_NUMBER: ${{ secrets.USER_PHONE_NUMBER }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
