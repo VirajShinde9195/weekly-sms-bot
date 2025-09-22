@@ -1,0 +1,21 @@
+name: Weekly SMS
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # Every 5 minutes (testing)
+  workflow_dispatch:         # Allows manual run button in Actions tab
+
+jobs:
+  send_sms:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Supabase Function
+        run: |
+          curl -X POST "https://<your-project-ref>.functions.supabase.co/weekly_sms"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          TWILIO_SID: ${{ secrets.TWILIO_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
+          USER_PHONE_NUMBER: ${{ secrets.USER_PHONE_NUMBER }}
