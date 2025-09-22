@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Trigger Supabase Function
         run: |
-          curl -X POST "https://<your-project-ref>.functions.supabase.co/weekly_sms"
+          curl -X POST "https://daomjbawryhkobgbhgeh.functions.supabase.co/weekly_sms"
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
